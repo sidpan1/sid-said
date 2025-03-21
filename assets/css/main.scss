@@ -164,61 +164,40 @@ hr {
   padding: 0;
 }
 
-.filter-status {
+.filter-info {
   padding: 12px 15px;
-  margin-bottom: 20px;
   border-radius: 4px;
   background-color: rgba(87, 173, 173, 0.1);
   border-left: 4px solid #57adad;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   
-  span {
-    margin-right: 10px;
+  .filter-label {
     font-weight: bold;
+    margin-right: 10px;
   }
   
-  .filter-tags {
-    font-weight: normal;
+  .active-filters {
     flex: 1;
-    min-width: 100px;
   }
   
-  .clear-filter {
+  .clear-filters {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: $text-color;
     border-radius: 20px;
-    padding: 5px 15px;
+    padding: 5px 12px;
     cursor: pointer;
     font-size: 0.8em;
     transition: all 0.2s ease;
     
     &:hover {
       background-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-1px);
     }
-  }
-}
-
-// Hide Back to Top links when filtering is active
-.back-to-top {
-  display: inline-block;
-  float: right;
-  margin-top: 20px;
-  text-decoration: none !important;
-  font-size: 0.8em;
-  color: $text-color;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-  
-  &:hover {
-    opacity: 1;
   }
 }
 
 // Animation for tag filtering
 .archive__item, .list__item {
-  transition: opacity 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
