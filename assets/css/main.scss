@@ -53,21 +53,12 @@ hr {
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.2s ease-in-out;
-  cursor: pointer;
   
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  &.active {
-    background-color: #57adad;
-    color: #fff;
-    border-color: #57adad;
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -155,28 +146,4 @@ hr {
   background-color: rgba(87, 173, 173, 0.3);
   font-size: 0.7em;
   margin-left: 8px;
-}
-
-// Filtering UI
-.filter-indicator {
-  margin: 1em 0;
-  padding: 0.75em 1em;
-  border-radius: 4px;
-  background-color: rgba(87, 173, 173, 0.1);
-  border-left: 4px solid #57adad;
-  
-  .filter-tags {
-    font-weight: bold;
-  }
-}
-
-.clear-filter-btn {
-  margin-bottom: 1em;
-  font-size: 0.8em;
-  padding: 0.5em 1em;
-}
-
-// Animation for tag filtering
-.archive__item, .list__item {
-  transition: opacity 0.3s ease;
 }
