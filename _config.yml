@@ -1,0 +1,19 @@
+title: Sid Said
+description: Personal blog of Sidhant
+author: Sidhant
+url: "https://default_user.github.io"
+baseurl: "/sid-said"
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .gitignore
