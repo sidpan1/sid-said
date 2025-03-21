@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
       filterBar.className = 'filter-bar';
       filterBar.innerHTML = `
         <div class="filter-status" style="display: none;">
+          <span>Active filters: </span>
+          <span class="filter-tags"></span>
           <button class="clear-filter">Clear</button>
         </div>
       `;
@@ -76,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Get all posts
       const posts = document.querySelectorAll('.archive__item');
       const filterStatus = document.querySelector('.filter-status');
+      const filterTags = document.querySelector('.filter-tags');
       
       if (filters.length === 0) {
         // Show all posts if no filters active
@@ -92,7 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Show filter status
       if (filterStatus) {
-        filterStatus.style.display = 'flex';
+        filterStatus.style.display = 'block';
+        filterTags.textContent = filters.join(', ') + (filters.length === 1 ? ' (1)' : ` (${filters.length})`);
       }
       
       // Find posts that match the active filters
