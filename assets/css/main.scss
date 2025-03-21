@@ -11,13 +11,29 @@
 .page__comments {
   margin-top: 2em;
   padding-top: 1em;
-  border-top: 1px solid #f2f3f3;
   width: 100%;
   max-width: 100%;
   padding-left: 0;
   padding-right: 0;
+  border-top: none; // Remove top border
 }
 
 .giscus {
   padding-bottom: 3em;
+}
+
+// Remove horizontal lines
+.page__content + .page__meta + .page__comments {
+  border-top: none;
+}
+
+// Remove extra horizontal lines
+hr {
+  display: none;
+}
+
+// Keep specific horizontal lines we want to display
+.page__content hr,
+.page__footer hr {
+  display: block;
 }
