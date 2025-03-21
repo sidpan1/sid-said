@@ -1,9 +1,8 @@
 ---
+title: "About Me"
 permalink: /about/
-title: "About"
+author_profile: true
 ---
-
-## About Me
 
 Hi, I'm Sidhant Panda. I currently lead AI initiatives at Astuto, following my experiences at Google and Amazon. I'm an alumnus of IIT Roorkee.
 
