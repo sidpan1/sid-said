@@ -1,158 +1,204 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Implementation strategy:
-  // 1. First handle the tag/category pages
-  // 2. Then handle the tags on individual posts 
-  
-  // Check if we're on a tags or categories page
-  const isTagPage = window.location.pathname.includes('/tags/') || window.location.pathname.includes('/categories/');
+  // Check if we're on a tag page
+  const isTagPage = window.location.pathname.includes('/tags/') || 
+                    window.location.pathname.includes('/categories/');
   
   if (isTagPage) {
-    // Find all tag and category links on archive pages
-    const tagLinks = document.querySelectorAll('.taxonomy__index a, .tag-cloud a, .page__taxonomy-item');
+    setupTagFiltering();
+  } else {
+    setupPostTagLinks();
+  }
+  
+  function setupTagFiltering() {
+    // Find all tag chips/links
+    const tagChips = document.querySelectorAll('.taxonomy__index a, .page__taxonomy-item');
+    const activeFilters = [];
     
-    // Convert links to filter chips
-    tagLinks.forEach(link => {
-      const tag = link.textContent.trim().split('(')[0].trim().toLowerCase();
-      const href = link.getAttribute('href');
+    // Create filter UI
+    const mainContent = document.querySelector('#main');
+    const pageTitle = document.querySelector('.page__title, .archive__title');
+    
+    if (pageTitle) {
+      const filterBar = document.createElement('div');
+      filterBar.className = 'filter-bar';
+      filterBar.innerHTML = `
+        <div class="filter-status" style="display: none;">
+          <span>Active filters: </span>
+          <span class="filter-tags"></span>
+          <button class="clear-filter">Clear</button>
+        </div>
+      `;
       
-      // Replace the link's default behavior
-      link.addEventListener('click', function(e) {
+      // Insert after the title
+      pageTitle.parentNode.insertBefore(filterBar, pageTitle.nextSibling);
+      
+      // Setup clear button
+      document.querySelector('.clear-filter').addEventListener('click', function() {
+        clearAllFilters();
+      });
+    }
+    
+    // Handle clicks on tags
+    tagChips.forEach(chip => {
+      chip.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
         
-        // Toggle active state
+        // Get the tag name (handle tags with counts)
+        let tagName = this.textContent.trim().toLowerCase();
+        // If it has a count, remove it
+        if (tagName.includes('(')) {
+          tagName = tagName.split('(')[0].trim();
+        }
+        
+        // Toggle active class
         this.classList.toggle('active');
         
-        // Apply filtering
-        filterPostsByTag(tag);
+        // Update filters array
+        if (this.classList.contains('active')) {
+          if (!activeFilters.includes(tagName)) {
+            activeFilters.push(tagName);
+          }
+        } else {
+          const index = activeFilters.indexOf(tagName);
+          if (index !== -1) {
+            activeFilters.splice(index, 1);
+          }
+        }
+        
+        // Apply the filters
+        applyFilters(activeFilters);
         
         return false;
       });
     });
     
-    // Add filtering UI
-    const archiveHeader = document.querySelector('.page__title, .archive__title');
-    if (archiveHeader) {
-      // Add filter UI elements
-      const filterBar = document.createElement('div');
-      filterBar.className = 'filter-bar';
-      filterBar.innerHTML = `
-        <div class="filter-info" style="display: none;">
-          <span class="filter-label">Active filters:</span>
-          <span class="active-filters"></span>
-          <button class="clear-filters">Clear</button>
-        </div>
-      `;
+    // Apply filters function
+    function applyFilters(filters) {
+      // Get all posts
+      const posts = document.querySelectorAll('.archive__item');
+      const filterStatus = document.querySelector('.filter-status');
+      const filterTags = document.querySelector('.filter-tags');
       
-      // Insert filter bar after the header
-      archiveHeader.parentNode.insertBefore(filterBar, archiveHeader.nextSibling);
-      
-      // Add clear button functionality
-      document.querySelector('.clear-filters').addEventListener('click', clearFilters);
-    }
-  }
-  
-  // Handle individual post tags/categories
-  const postTagChips = document.querySelectorAll('.page__taxonomy .page__taxonomy-item');
-  
-  postTagChips.forEach(chip => {
-    // Get tag name and original link
-    const tag = chip.textContent.trim().toLowerCase();
-    const originalHref = chip.getAttribute('href');
-    
-    // Store original href as data attribute
-    chip.setAttribute('data-href', originalHref);
-    
-    // Replace with a click handler
-    chip.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      // Navigate to tag page with filter pre-applied
-      const tagPage = this.getAttribute('data-href');
-      sessionStorage.setItem('prefilter', tag);
-      window.location.href = tagPage;
-      
-      return false;
-    });
-  });
-  
-  // Check for pre-filter from session storage
-  const prefilter = sessionStorage.getItem('prefilter');
-  if (prefilter && isTagPage) {
-    // Find the matching tag and activate it
-    const matchingTag = Array.from(document.querySelectorAll('.taxonomy__index a, .tag-cloud a'))
-      .find(link => link.textContent.trim().toLowerCase().includes(prefilter));
-      
-    if (matchingTag) {
-      matchingTag.classList.add('active');
-      filterPostsByTag(prefilter);
-    }
-    
-    // Clear the prefilter
-    sessionStorage.removeItem('prefilter');
-  }
-  
-  // Track active filters
-  let activeFilters = [];
-  
-  function filterPostsByTag(tag) {
-    // Toggle filter in the active filters list
-    const filterIndex = activeFilters.indexOf(tag);
-    if (filterIndex === -1) {
-      activeFilters.push(tag);
-    } else {
-      activeFilters.splice(filterIndex, 1);
-    }
-    
-    // Get all articles
-    const articles = document.querySelectorAll('.archive__item');
-    
-    // Show filter info if there are active filters
-    const filterInfo = document.querySelector('.filter-info');
-    const activeFiltersElem = document.querySelector('.active-filters');
-    
-    if (activeFilters.length > 0) {
-      // Update active filters display
-      activeFiltersElem.textContent = activeFilters.join(', ');
-      filterInfo.style.display = 'block';
-      
-      // Filter articles
-      articles.forEach(article => {
-        const articleTags = Array.from(article.querySelectorAll('.page__taxonomy-item'))
-          .map(el => el.textContent.trim().toLowerCase());
-          
-        // Check if article has any active filter
-        const hasActiveTag = activeFilters.some(activeTag => 
-          articleTags.some(articleTag => articleTag.includes(activeTag))
-        );
+      if (filters.length === 0) {
+        // Show all posts if no filters active
+        posts.forEach(post => {
+          post.style.display = '';
+        });
         
-        article.style.display = hasActiveTag ? '' : 'none';
+        // Hide filter status
+        if (filterStatus) {
+          filterStatus.style.display = 'none';
+        }
+        return;
+      }
+      
+      // Show filter status
+      if (filterStatus) {
+        filterStatus.style.display = 'block';
+        filterTags.textContent = filters.join(', ') + (filters.length === 1 ? ' (1)' : ` (${filters.length})`);
+      }
+      
+      // Find posts that match the active filters
+      posts.forEach(post => {
+        // Get all of this post's tags
+        const postTags = Array.from(post.querySelectorAll('.page__taxonomy-item'))
+          .map(tag => {
+            let text = tag.textContent.trim().toLowerCase();
+            if (text.includes('(')) {
+              text = text.split('(')[0].trim();
+            }
+            return text;
+          });
+          
+        // Check if post has any of the active filters
+        const hasActiveFilter = filters.some(filter => {
+          return postTags.includes(filter) || 
+                 post.innerHTML.toLowerCase().includes(filter);
+        });
+        
+        // Show/hide post
+        post.style.display = hasActiveFilter ? '' : 'none';
       });
-    } else {
-      // No active filters, show all articles
-      filterInfo.style.display = 'none';
-      articles.forEach(article => {
-        article.style.display = '';
+      
+      // Handle case where there might not be properly tagged posts but content sections with tag names
+      // This specifically handles the tags page structure in Minimal Mistakes
+      
+      // First check if no posts are visible
+      const visiblePosts = Array.from(posts).filter(post => post.style.display !== 'none');
+      
+      if (visiblePosts.length === 0) {
+        // Check for section headings that match the filters
+        filters.forEach(filter => {
+          const headingSection = Array.from(document.querySelectorAll('h2')).find(heading => 
+            heading.textContent.trim().toLowerCase() === filter);
+            
+          if (headingSection) {
+            // Find posts in that section
+            let nextElement = headingSection.nextElementSibling;
+            while (nextElement && 
+                  !nextElement.tagName.startsWith('H') && 
+                  !nextElement.classList.contains('back-to-top')) {
+              if (nextElement.classList.contains('archive__item')) {
+                nextElement.style.display = '';
+              }
+              nextElement = nextElement.nextElementSibling;
+            }
+          }
+        });
+      }
+    }
+    
+    function clearAllFilters() {
+      // Clear active filters array
+      activeFilters.length = 0;
+      
+      // Remove active class from all chips
+      tagChips.forEach(chip => {
+        chip.classList.remove('active');
       });
+      
+      // Show all posts
+      const posts = document.querySelectorAll('.archive__item');
+      posts.forEach(post => {
+        post.style.display = '';
+      });
+      
+      // Hide filter status
+      const filterStatus = document.querySelector('.filter-status');
+      if (filterStatus) {
+        filterStatus.style.display = 'none';
+      }
+    }
+    
+    // Check if we need to pre-filter based on URL hash
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      const decodedHash = decodeURIComponent(hash);
+      const matchingChip = Array.from(tagChips).find(chip => 
+        chip.textContent.trim().toLowerCase().includes(decodedHash.toLowerCase()));
+        
+      if (matchingChip) {
+        matchingChip.click();
+      }
     }
   }
   
-  function clearFilters() {
-    // Clear active filters
-    activeFilters = [];
+  function setupPostTagLinks() {
+    // For individual post pages, make tags link to the tags page with a filter
+    const postTags = document.querySelectorAll('.page__taxonomy-item');
     
-    // Remove active class from all filter chips
-    document.querySelectorAll('.active').forEach(el => {
-      el.classList.remove('active');
-    });
-    
-    // Hide filter info
-    document.querySelector('.filter-info').style.display = 'none';
-    
-    // Show all articles
-    document.querySelectorAll('.archive__item').forEach(article => {
-      article.style.display = '';
+    postTags.forEach(tag => {
+      tag.addEventListener('click', function(e) {
+        const tagName = this.textContent.trim().toLowerCase();
+        const href = this.getAttribute('href');
+        
+        if (href) {
+          // Add the tag as a hash to the URL
+          window.location.href = `${href}#${encodeURIComponent(tagName)}`;
+          e.preventDefault();
+        }
+      });
     });
   }
 });
