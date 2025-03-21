@@ -40,20 +40,21 @@ hr {
 
 // Modern chip design for tags and categories
 .page__taxonomy-item,
-.archive__item-title + .taxonomy__count,
-.taxonomy__index a {
+.taxonomy__index a,
+.tag__item a {
   display: inline-block;
   margin: 4px 4px 4px 0;
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 0.75em;
-  text-decoration: none;
+  text-decoration: none !important;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+  color: $text-color;
   
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
@@ -64,7 +65,7 @@ hr {
   
   &.active {
     background-color: #57adad;
-    color: #fff;
+    color: #fff !important;
     border-color: #57adad;
     transform: translateY(-2px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -158,25 +159,45 @@ hr {
 }
 
 // Filtering UI
-.filter-indicator {
-  margin: 1em 0;
-  padding: 0.75em 1em;
+.filter-bar {
+  margin: 1.5em 0;
+  padding: 0;
+}
+
+.filter-info {
+  padding: 12px 15px;
   border-radius: 4px;
   background-color: rgba(87, 173, 173, 0.1);
   border-left: 4px solid #57adad;
+  display: flex;
+  align-items: center;
   
-  .filter-tags {
+  .filter-label {
     font-weight: bold;
+    margin-right: 10px;
   }
-}
-
-.clear-filter-btn {
-  margin-bottom: 1em;
-  font-size: 0.8em;
-  padding: 0.5em 1em;
+  
+  .active-filters {
+    flex: 1;
+  }
+  
+  .clear-filters {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: $text-color;
+    border-radius: 20px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
 }
 
 // Animation for tag filtering
 .archive__item, .list__item {
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 }
