@@ -1,10 +1,10 @@
 {% if site.comments.giscus.repo %}
 <div class="page__comments">
   <h4 class="page__comments-title">{{ site.data.ui-text[site.locale].comments_label | default: "Comments" }}</h4>
-  <section id="giscus-comments"></section>
+  <section id="giscus-comments" class="giscus"></section>
 
   <script>
-    let giscusTheme = localStorage.getItem('theme');
+    let giscusTheme = 'dark_dimmed';
     const giscusAttributes = {
       "src": "https://giscus.app/client.js",
       "data-repo": "{{ site.comments.giscus.repo }}",
@@ -16,7 +16,7 @@
       "data-reactions-enabled": "{{ site.comments.giscus.reactions-enabled | default: '1' }}",
       "data-emit-metadata": "{{ site.comments.giscus.emit-metadata | default: '1' }}",
       "data-input-position": "{{ site.comments.giscus.input-position | default: 'bottom' }}",
-      "data-theme": "{{ site.comments.giscus.theme | default: 'light' }}",
+      "data-theme": giscusTheme,
       "data-lang": "{{ site.comments.giscus.lang | default: 'en' }}",
       "data-loading": "{{ site.comments.giscus.loading | default: 'lazy' }}",
       "crossorigin": "anonymous",
