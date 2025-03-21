@@ -81,7 +81,7 @@ author:
       url: "https://github.com/sidpan1"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/sidpan1/"
+      url: "https://www.linkedin.com/in/sidpan/"
 
 # Site Footer
 footer:
@@ -91,7 +91,7 @@ footer:
       url: "https://github.com/sidpan1"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/sidpan1/"
+      url: "https://www.linkedin.com/in/sidpan/"
 
 # Defaults
 defaults:

@@ -36,6 +36,6 @@ I'm particularly fascinated by how AI is transforming software development and h
 
 ## Connect With Me
 
-You can find me on [LinkedIn](https://www.linkedin.com/in/sidpan1/) if you'd like to connect professionally. I'm always open to discussing technology, collaborating on interesting projects, or just exchanging ideas about the future of AI and software development.
+You can find me on [LinkedIn](https://www.linkedin.com/in/sidpan/) if you'd like to connect professionally. I'm always open to discussing technology, collaborating on interesting projects, or just exchanging ideas about the future of AI and software development.
 
 Feel free to reach out if you have questions or want to chat about any of the topics I cover in this blog!
