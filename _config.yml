@@ -9,21 +9,65 @@ minimal_mistakes_skin: "default"
 
 # Build settings
 markdown: kramdown
+
+# Configuration
 permalink: /:categories/:title/
-paginate: 5
-paginate_path: /page:num/
+timezone: Asia/Kolkata
 
-include:
-  - _pages
-
-# Plugins
+# Plugins (previously gems:)
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
+  - jemoji
   - jekyll-include-cache
-  - jekyll-remote-theme
+
+# mimic GitHub Pages with --safe
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+# Pagination
+paginate: 5
+paginate_path: /page:num/
+
+# Include directories
+include:
+  - _pages
+
+# Exclude files
+exclude:
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - vendor
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - assets/js/plugins
+  - assets/js/_main.js
+  - assets/js/vendor
+  - Capfile
+  - CHANGELOG
+  - config
+  - Gemfile
+  - Gruntfile.js
+  - gulpfile.js
+  - LICENSE
+  - log
+  - node_modules
+  - package.json
+  - package-lock.json
+  - Rakefile
+  - README
+  - tmp
+  - /docs # ignore Minimal Mistakes /docs
+  - /test # ignore Minimal Mistakes /test
 
 # Site Author
 author:
@@ -39,30 +83,17 @@ author:
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/sidpan1/"
 
-# SEO settings
-twitter:
-  username: ""
-social:
-  type: "Person"
-  name: "Sidhant Panda"
+# Site Footer
+footer:
   links:
-    - "https://github.com/sidpan1"
-    - "https://www.linkedin.com/in/sidpan1/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/sidpan1"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/sidpan1/"
 
-# Comments
-comments:
-  provider: "disqus"
-  disqus:
-    shortname: "sid-said"
-
-# Analytics
-analytics:
-  provider: "google-gtag"
-  google:
-    tracking_id: "G-EXAMPLE"
-    anonymize_ip: false
-
-# Defaults for posts and pages
+# Defaults
 defaults:
   # _posts
   - scope:
@@ -82,20 +113,3 @@ defaults:
     values:
       layout: single
       author_profile: true
-
-# Site Footer
-footer:
-  links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/sidpan1"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/sidpan1/"
-
-# Exclude from processing
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - README.md
-  - .gitignore

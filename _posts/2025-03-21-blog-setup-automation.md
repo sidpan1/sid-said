@@ -6,15 +6,11 @@ categories:
 tags:
   - AI
   - Claude
-  - Model Context Protocol
   - MCP
   - blogging
 toc: true
 toc_sticky: true
-description: "How I used Claude 3.7 Sonnet with Model Context Protocol (MCP) to automate the creation of a blog from scratch to deployment in just 5 minutes."
 ---
-
-# How I Set Up This Blog with Claude and MCPs in 5 Minutes
 
 Today I want to share a remarkable experience I just had. I set up this entire blog—from scratch to fully deployed on GitHub Pages—without writing a single line of code myself. The entire process took about 5 minutes of my time, compared to what would normally be a day-long project.
 
