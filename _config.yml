@@ -1,15 +1,84 @@
-title: Sid Said
-description: Personal blog of Sidhant
-author: Sidhant
-url: "https://default_user.github.io"
+title: "Sid Said"
+description: "Thoughts, ideas, and musings by Sidhant Panda"
 baseurl: "/sid-said"
+url: "https://sidpan1.github.io"
+
+remote_theme: "mmistakes/minimal-mistakes"
 
 # Build settings
 markdown: kramdown
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-remote-theme
+
+# Site Author
+author:
+  name: "Sidhant Panda"
+  avatar: "/assets/images/avatar.jpg"
+  bio: "AI leader interested in multi-agent systems, LLMs, and autonomous development workflows"
+  location: "Bangalore, India"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/sidpan1"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/sidpan1/"
+
+# SEO settings
+twitter:
+  username: ""
+social:
+  type: "Person"
+  name: "Sidhant Panda"
+  links:
+    - "https://github.com/sidpan1"
+    - "https://www.linkedin.com/in/sidpan1/"
+
+# Comments
+comments:
+  provider: "disqus"
+  disqus:
+    shortname: "sid-said"
+
+# Analytics
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "G-EXAMPLE"
+    anonymize_ip: false
+
+# Defaults for pages
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+# Site Footer
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/sidpan1"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/sidpan1/"
 
 # Exclude from processing
 exclude:
@@ -17,3 +86,19 @@ exclude:
   - Gemfile.lock
   - README.md
   - .gitignore
+
+# Pagination
+paginate: 5
+paginate_path: /page:num/
+
+# Include
+include:
+  - _pages
+
+# Archives
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/

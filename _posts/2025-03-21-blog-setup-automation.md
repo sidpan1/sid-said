@@ -1,8 +1,17 @@
 ---
-layout: post
 title: "How I Set Up This Blog with Claude and MCPs in 5 Minutes"
 date: 2025-03-21
-categories: automation
+categories: 
+  - automation
+tags:
+  - AI
+  - Claude
+  - Model Context Protocol
+  - MCP
+  - blogging
+toc: true
+toc_sticky: true
+description: "How I used Claude 3.7 Sonnet with Model Context Protocol (MCP) to automate the creation of a blog from scratch to deployment in just 5 minutes."
 ---
 
 # How I Set Up This Blog with Claude and MCPs in 5 Minutes
