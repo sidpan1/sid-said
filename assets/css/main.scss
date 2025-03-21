@@ -37,3 +37,113 @@ hr {
 .page__footer hr {
   display: block;
 }
+
+// Modern chip design for tags and categories
+.page__taxonomy-item,
+.archive__item-title + .taxonomy__count,
+.taxonomy__index a {
+  display: inline-block;
+  margin: 4px 4px 4px 0;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75em;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease-in-out;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Style for tag pages
+.taxonomy__index {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  
+  li {
+    list-style: none;
+    margin-bottom: 10px;
+    
+    a {
+      display: inline-flex;
+      align-items: center;
+      
+      strong {
+        margin-right: 5px;
+      }
+    }
+    
+    .taxonomy__count {
+      background-color: rgba(87, 173, 173, 0.3);
+      padding: 0 8px;
+      border-radius: 12px;
+      font-size: 0.8em;
+      margin-left: 8px;
+      min-width: 22px;
+      text-align: center;
+    }
+  }
+}
+
+// Tag cloud styling
+.tag-cloud {
+  li {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  
+  .taxonomy__count {
+    background-color: rgba(87, 173, 173, 0.3);
+    padding: 0 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    margin-left: 4px;
+    min-width: 22px;
+    display: inline-block;
+    text-align: center;
+  }
+}
+
+// Categories and tags in posts
+.page__taxonomy {
+  .page__taxonomy-item {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 0.7em;
+  }
+}
+
+// Improve archive page
+.archive__item-title {
+  margin-top: 1em;
+  
+  a {
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Adjust count badges
+.taxonomy__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: rgba(87, 173, 173, 0.3);
+  font-size: 0.7em;
+  margin-left: 8px;
+}
