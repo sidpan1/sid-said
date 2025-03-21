@@ -36,6 +36,23 @@ whitelist:
 paginate: 5
 paginate_path: /page:num/
 
+# Comments
+comments:
+  provider: "giscus"
+  giscus:
+    repo: "sidpan1/sid-said"
+    repo-id: "R_kgDOOMKd-Q"
+    category: "Q&A"
+    category-id: "DIC_kwDOOMKd-c4CoUCi"
+    mapping: "pathname"
+    strict: "1"
+    reactions-enabled: "1"
+    emit-metadata: "1"
+    input-position: "bottom"
+    theme: "dark_dimmed"
+    lang: "en"
+    loading: "lazy"
+
 # Include directories
 include:
   - _pages

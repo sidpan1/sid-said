@@ -1,0 +1,34 @@
+{% if site.comments.giscus.repo %}
+<div class="page__comments">
+  <h4 class="page__comments-title">{{ site.data.ui-text[site.locale].comments_label | default: "Comments" }}</h4>
+  <section id="giscus-comments"></section>
+
+  <script>
+    let giscusTheme = localStorage.getItem('theme');
+    const giscusAttributes = {
+      "src": "https://giscus.app/client.js",
+      "data-repo": "{{ site.comments.giscus.repo }}",
+      "data-repo-id": "{{ site.comments.giscus.repo-id }}",
+      "data-category": "{{ site.comments.giscus.category }}",
+      "data-category-id": "{{ site.comments.giscus.category-id }}",
+      "data-mapping": "{{ site.comments.giscus.mapping | default: 'pathname' }}",
+      "data-strict": "{{ site.comments.giscus.strict | default: '1' }}",
+      "data-reactions-enabled": "{{ site.comments.giscus.reactions-enabled | default: '1' }}",
+      "data-emit-metadata": "{{ site.comments.giscus.emit-metadata | default: '1' }}",
+      "data-input-position": "{{ site.comments.giscus.input-position | default: 'bottom' }}",
+      "data-theme": "{{ site.comments.giscus.theme | default: 'light' }}",
+      "data-lang": "{{ site.comments.giscus.lang | default: 'en' }}",
+      "data-loading": "{{ site.comments.giscus.loading | default: 'lazy' }}",
+      "crossorigin": "anonymous",
+      "async": ""
+    };
+
+    // Dynamically create script tag
+    const giscusScript = document.createElement("script");
+    Object.entries(giscusAttributes).forEach(([key, value]) => {
+      giscusScript.setAttribute(key, value);
+    });
+    document.getElementById("giscus-comments").appendChild(giscusScript);
+  </script>
+</div>
+{% endif %}
