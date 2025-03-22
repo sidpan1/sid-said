@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Human-like Memory Objectives for AI Agents"
 date: 2025-03-22
 categories: 
@@ -13,8 +12,6 @@ tags:
 toc: true
 toc_sticky: true
 ---
-
-# Human-like Memory Objectives for AI Agents
 
 One of the most significant challenges in building effective AI agents is context management. While large language models (LLMs) benefit tremendously from having extensive context, there's an inevitable trade-off: both latency and computational costs increase with context size.
 
@@ -182,7 +179,7 @@ memory_management_llm = AugmentedLLM(llm, MEMORY_MANAGEMENT_PROMPT, tools)
 # Get a new context object
 context = Context()
 
- # Clone the context to a temporary variable so we can modify it without affecting the original
+# Clone the context to a temporary variable so we can modify it without affecting the original
 temporary_context = context.clone()
 
 # In a background thread, periodically process our growing context
