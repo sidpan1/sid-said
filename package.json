@@ -1,0 +1,31 @@
+{
+  "name": "workspace_20250321_sid-said",
+  "version": "1.0.0",
+  "description": "This is the repository for my personal blog \"Sid Said\". It's built with Jekyll and hosted on GitHub Pages.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "slides:dev": "slidev",
+    "slides:build": "slidev build",
+    "slides:export": "slidev export"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sidpan1/sid-said.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sidpan1/sid-said/issues"
+  },
+  "homepage": "https://github.com/sidpan1/sid-said#readme",
+  "dependencies": {
+    "@slidev/cli": "^51.4.0",
+    "@slidev/theme-default": "^0.25.0",
+    "@slidev/theme-seriph": "^0.25.0"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.51.1"
+  }
+}

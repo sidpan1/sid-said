@@ -1,0 +1,15 @@
+{% comment %}
+  Include this in any blog post to add download options for slides
+  Usage: {% include slides/full-options.html slug="my-slides-filename" %}
+  The slug parameter should match your slides file name (without extension)
+{% endcomment %}
+
+<div class="notice--info slides-notice">
+  <p>
+    <strong>📊 Presentation:</strong> 
+    <a href="{{ site.baseurl }}/assets/slides/{{ include.slug }}.pdf" class="btn btn--primary btn--small">View as PDF</a>
+    {% if include.pptx %}
+    <a href="{{ site.baseurl }}/assets/slides/{{ include.slug }}.pptx" class="btn btn--primary btn--small">Download PowerPoint</a>
+    {% endif %}
+  </p>
+</div>

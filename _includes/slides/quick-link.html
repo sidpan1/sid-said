@@ -1,0 +1,25 @@
+{% comment %}
+  Include this in any blog post to embed PowerPoint slides
+  Usage: {% include slides/quick-link.html slug="my-slides-filename" %}
+  The slug parameter should match your slides file name (without extension)
+{% endcomment %}
+
+<div class="slides-container" style="margin-bottom: 1.5rem; background: #2c3e50; color: white; border-radius: 4px; overflow: hidden;">
+  <div style="padding: 1rem;">
+    <p style="margin: 0; display: flex; align-items: center;">
+      <span style="font-size: 1.5em; margin-right: 0.5rem;">📊</span>
+      <span><strong>In a hurry?</strong> Skim through the key points of this article quickly.</span>
+    </p>
+  </div>
+  <div style="height: 500px; position: relative;">
+    <iframe 
+      src="https://view.officeapps.live.com/op/embed.aspx?src=https://sidpan1.github.io{{ site.baseurl }}/assets/slides/{{ include.slug }}.pptx" 
+      style="width: 100%; height: 100%; border: none;"
+      frameborder="0" 
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div style="background: #34495e; padding: 0.5rem 1rem; font-size: 0.8em; text-align: center;">
+    <p style="margin: 0;">Note: Slides will appear when published to GitHub Pages</p>
+  </div>
+</div>

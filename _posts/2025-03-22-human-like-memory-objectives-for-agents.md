@@ -13,7 +13,11 @@ toc: true
 toc_sticky: true
 ---
 
-One of the most significant challenges in building effective AI agents is context management. While large language models (LLMs) benefit tremendously from having extensive context, there's an inevitable trade-off: both latency and computational costs increase with context size.
+One of the most significant challenges in building effective AI agents is context management. While large language models (LLMs) benefit tremendously from having extensive context, there's an inevitable trade-off: both latency and computational costs increase with context size. This essay explores a solution to this problem by mimicking how humans manage memory and attention.
+
+{% include slides/quick-link.html slug="human-like-memory-objectives-export" %}
+
+Or continue reading below.
 
 ## Understanding Context and Memory in LLMs
 
@@ -35,7 +39,7 @@ Unlike traditional software with separate memory management systems, LLMs work w
 
 The diagram below illustrates how context evolves during LLM interactions and how new information is created at each step:
 
-![Context Evolution in LLM Interactions](/assets/images/llm-context-evolution.png)
+![Context Evolution in LLM Interactions](/sid-said/assets/images/llm-context-evolution.png)
 
 #### Step-by-Step Context Growth
 
