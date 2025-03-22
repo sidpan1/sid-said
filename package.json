@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "slides:dev": "slidev",
-    "slides:build": "slidev build",
-    "slides:export": "slidev export"
+    "slides:build": "slidev build --dark",
+    "slides:export": "bash -c 'slidev export --dark --format pptx $0 --output=./assets/slides/$(basename $0 .md).pptx'"
   },
   "repository": {
     "type": "git",

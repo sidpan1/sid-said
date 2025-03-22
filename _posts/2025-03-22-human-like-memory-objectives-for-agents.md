@@ -15,7 +15,7 @@ toc_sticky: true
 
 One of the most significant challenges in building effective AI agents is context management. While large language models (LLMs) benefit tremendously from having extensive context, there's an inevitable trade-off: both latency and computational costs increase with context size. This essay explores a solution to this problem by mimicking how humans manage memory and attention.
 
-{% include slides/quick-link.html slug="human-like-memory-objectives-export" %}
+{% include slides/quick-link.html slug="human-like-memory-objectives" %}
 
 Or continue reading below.
 
