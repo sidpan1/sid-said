@@ -2,8 +2,16 @@
 layout: post
 title: "Human-like Memory Objectives for AI Agents"
 date: 2025-03-22
-categories: AI memory-management
-draft: true
+categories: 
+  - AI
+  - memory-management
+tags:
+  - AI
+  - memory
+  - LLM
+  - context-management
+toc: true
+toc_sticky: true
 ---
 
 # Human-like Memory Objectives for AI Agents
